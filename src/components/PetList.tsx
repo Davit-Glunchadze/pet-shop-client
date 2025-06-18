@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PetCard from './PetCard';
-
 interface Animal {
   id: string;
   name: string;
@@ -12,19 +11,18 @@ interface Animal {
   imageUrl: string;
   category: string;
 }
-
 const PetList: React.FC = () => {
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    fetch('/db.json')
+    fetch('http://localhost:3001/animals')  // ეს და არა db
       .then(res => res.json())
       .then(data => {
-        
-        const flatAnimals = data.animals.map((animal: any) => ({
+        // აქ შევცვალე:
+        // data.animals.map() :x: → data.map() :white_check_mark:
+        const flatAnimals = data.map((animal: any) => ({
           id: animal.id,
-          ...animal.data[0],
+          ...animal.data[0], // :white_check_mark: გაშლილი მონაცემები ცალკე ველად
         }));
         setAnimals(flatAnimals);
         setLoading(false);
@@ -34,21 +32,30 @@ const PetList: React.FC = () => {
         setLoading(false);
       });
   }, []);
-
   if (loading) {
     return <p>Loading animals...</p>;
   }
-
   return (
     <section style={{ width: '100%', margin: '2rem 0', boxSizing: 'border-box' }}>
-      <h2 style={{ color: '#4a653e', fontWeight: 'bold', borderLeft: '4px solid #d18e00', paddingLeft: '0.5rem' }}>Our Pets</h2>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-        gap: '1rem',
-        marginTop: '1rem'
-      }}>
-        {animals.map(animal => (
+      <h2
+        style={{
+          color: '#4A653E',
+          fontWeight: 'bold',
+          borderLeft: '4px solid #D18E00',
+          paddingLeft: '0.5rem',
+        }}
+      >
+        Our Pets
+      </h2>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+          gap: '1rem',
+          marginTop: '1rem',
+        }}
+      >
+        {animals.map((animal) => (
           <PetCard
             key={animal.id}
             image={animal.imageUrl}
@@ -62,5 +69,4 @@ const PetList: React.FC = () => {
     </section>
   );
 };
-
 export default PetList;
