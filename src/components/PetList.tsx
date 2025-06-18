@@ -2,27 +2,31 @@ import React, { useEffect, useState } from 'react';
 import PetCard from './PetCard';
 
 interface Animal {
-  id: number;
+  id: string;
   name: string;
   priceUSD: number;
   priceGEL: number;
   description: string;
   isPopular: boolean;
   stock: number;
+  imageUrl: string;
+  category: string;
 }
 
 const PetList: React.FC = () => {
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
 
-
-  // Animal Fetch Local API-dan
-
   useEffect(() => {
-    fetch('http://localhost:5001/animals')
+    fetch('/db.json')
       .then(res => res.json())
       .then(data => {
-        setAnimals(data);
+        
+        const flatAnimals = data.animals.map((animal: any) => ({
+          id: animal.id,
+          ...animal.data[0],
+        }));
+        setAnimals(flatAnimals);
         setLoading(false);
       })
       .catch(err => {
@@ -47,9 +51,9 @@ const PetList: React.FC = () => {
         {animals.map(animal => (
           <PetCard
             key={animal.id}
-            image={''} // Img URL 
+            image={animal.imageUrl}
             name={animal.name}
-            type={''}  // Cxovelis type
+            type={animal.category}
             price={animal.priceUSD}
             outOfStock={animal.stock === 0}
           />
