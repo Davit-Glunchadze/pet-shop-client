@@ -58,10 +58,12 @@ const PetList: React.FC = () => {
         {animals.map((animal) => (
           <PetCard
             key={animal.id}
+            id={animal.id}
             image={animal.imageUrl}
             name={animal.name}
             type={animal.category}
             price={animal.priceUSD}
+            stock={animal.stock}
             outOfStock={animal.stock === 0}
           />
         ))}

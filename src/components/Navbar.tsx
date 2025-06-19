@@ -1,20 +1,26 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-
-// Navigacia  
 const Navbar: React.FC = () => {
+  const location = useLocation();
+
+  const linkStyle = (path: string) => ({
+    color: location.pathname === path ? '#f7941d' : 'white',
+    textDecoration: location.pathname === path ? 'underline' : 'none',
+  });
+
   return (
-<nav style={{ backgroundColor: '#4a653e', padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'white', width: '100%' }}>
+    <nav style={{ backgroundColor: '#4a653e', padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'white', width: '100%' }}>
       <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>PetShop</div>
       <ul style={{ listStyle: 'none', display: 'flex', gap: '2rem', margin: 0, padding: 0 }}>
         <li>
-          <a href="#" style={{ color: '#f7941d', textDecoration: 'underline' }}>Home</a>
+          <Link to="/" style={linkStyle('/')}>Home</Link>
         </li>
         <li>
-          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>Wishlist</a>
+          <Link to="/wishlist" style={linkStyle('/wishlist')}>Wishlist</Link>
         </li>
         <li>
-          <a href="#" style={{ color: 'white', textDecoration: 'none' }}>Cart</a>
+          <Link to="/cart" style={linkStyle('/cart')}>Cart</Link>
         </li>
       </ul>
     </nav>
