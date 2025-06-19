@@ -38,12 +38,14 @@ const PetCard: React.FC<PetCardProps> = ({ id, image, name, type, price, stock, 
       borderRadius: 8,
       boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
       padding: 16,
-      width: 220,
+      width: 250,
       margin: 16,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       textAlign: 'center',
+      position: 'relative',
+      overflow: 'hidden',
     }}>
       {image ? (
         <img src={image} alt={name} style={{ width: '100%', borderRadius: 8, marginBottom: 8 }} />
@@ -79,6 +81,7 @@ const PetCard: React.FC<PetCardProps> = ({ id, image, name, type, price, stock, 
             cursor: 'pointer',
             fontWeight: 'bold',
             fontSize: 16,
+            flex: 1,
           }}
           aria-label="Details"
         >
