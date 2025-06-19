@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav style={{ backgroundColor: '#4a653e', padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: 'white', width: '100%' }}>
-      <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>PetShop</div>
+      <a href="/" id="logo-link"><div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>PetShop</div></a>
       <ul style={{ listStyle: 'none', display: 'flex', gap: '2rem', margin: 0, padding: 0 }}>
         <li>
           <Link to="/" style={linkStyle('/')}>Home</Link>

@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+#logo-link{
+  text-decoration: none;
+  color: white;
+}
 /* Ensure body and html take full height and prevent horizontal scroll */
 html, body, #root {
   height: 100%;
