@@ -6,6 +6,7 @@ import PetList from './components/PetList';
 import Footer from './components/Footer';
 import Checkout from './components/Checkout';
 import Wishlist from './components/Wishlist';
+import Cart from './components/Cart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,6 +24,7 @@ function App() {
           </>
         } />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
