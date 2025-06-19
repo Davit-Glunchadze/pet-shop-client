@@ -13,7 +13,7 @@ const Checkout: React.FC = () => {
       toast.error('Cart is empty');
       return;
     }
-    // Simulate purchase: reduce stock and clear cart
+
     cartItems.forEach(item => {
       dispatch(reduceStock({ id: item.id, quantity: item.quantity }));
     });
